@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1>Panier</h1>
+                <div class="table-responsive mt-4">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Produit</th>
+                                <th>Prix</th>
+                                <th class ="text-center">Quantité</th>
+                                <th class ="text-center">Total</th>
+                                <th class ="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for element in data %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ asset('images/montre/' ~ element.montre.images[0].imageName) }}" data-lightbox="{{ element.montre.nom }}">
+                                            <img src="{{ asset('images/montre/' ~ element.montre.images[0].imageName) }}" alt="{{ element.montre.nom }}" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
+                                        </a>
+                                    </td>
+                                    <td>{{ element.montre.nom }}</td>
+                                    <td >{{ element.montre.prix |format_currency('EUR')}}</td>
+                                    <td class ="text-center">{{ element.quantity }}</td>
+                                    <td class ="text-center">{{ element.quantity * element.montre.prix }} €</td>
+                                    <td class ="text-center">
+                                        <a href="{{ path('app_front_panier_add', {id: element.montre.id}) }}" class="btn btn-success">+</a>
+                                        <a href="{{ path('app_front_panier_remove', {id: element.montre.id}) }}" class="btn btn-dark">-</a>
+                                        <a href="{{ path('app_front_panier_delete', {id: element.montre.id}) }}" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">Votre panier est vide</td>
+                                </tr>    
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="fw-bold fs-5">Total</td>
+                                <td class="fw-bold text-center">{{ total |format_currency('EUR')}}</td>
+                                <td class ="text-center">
+                                    <a href="{{ path('app_front_panier_empty') }}" class="btn btn-danger">Vider</a>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <a href="" class="btn btn-custom-gold">Valider</a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

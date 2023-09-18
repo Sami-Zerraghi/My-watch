@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MY_WATCH{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="fs-1 fw-bold" style="color: #b29b2a">{{ home.titre }}</h1>
+
+    {% if home.imageName is null %}
+        <p class="mt-4">{{ home.texte }}</p>
+        {% if home.signature is not null %}
+            <p class="signature">{{ home.signature }}</p>
+        {% endif %}
+    {% else %}
+        <div class="row mt-4">
+            <div class="col-12 col-md-6 order-2 order-md-1">
+                <p class="fs-5">{{ home.texte }}</p>
+                {% if home.signature is not null %}
+                    <p class="signature">{{ home.signature }}</p>
+                {% endif %}
+            </div>
+            <div class="col-12 col-md-6 order-1 order-md-2">
+                <img src="{{ asset('images/home/' ~ home.imageName) }}" class="img-fluid" alt="{{ home.titre }}">
+            </div>
+        </div>
+    {% endif %}
+
+    {% if carousels|length > 0 %}
+        <div id="carouselExampleCaptions" class="carousel carousel-dark slide border border-dark" data-bs-ride="false">
+            <div class="carousel-indicators">
+                {% for carousel in carousels %}
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="active" aria-current="true" {% endif %} aria-label="Slide {{ loop.index }}"></button>
+                {% endfor %}
+            </div>
+            <div class="carousel-inner">
+                {% for carousel in carousels %}
+                    <div class="carousel-item {% if loop.index0 == 0 %}active{% endif %}">
+                        <img src="{{ asset('images/carousel/' ~ carousel.imageName) }}" class="d-block w-100" alt="...">
+                        {% if carousel.titre is not null or carousel.texte is not null %}
+                            <div class="carousel-caption d-none d-md-block">
+                                {% if carousel.titre is not null %}
+                                    <h5>{{ carousel.titre }}</h5>
+                                {% endif %}
+                                {% if carousel.texte is not null %}
+                                    <p>{{ carousel.texte }}</p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Presedant</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">suivant</span>
+            </button>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

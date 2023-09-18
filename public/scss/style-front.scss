@@ -1,0 +1,90 @@
+@import '_variables.scss';
+body{
+        background: url('../images/pattern.png');
+        font-family: 'Poppins', sans-serif;
+        font-size:15px;
+        color: $textColor;
+        @for $i from 1 through 6 {
+            h#{$i} {
+                font-family: "Montserrat",  sans-serif;
+    
+                
+            }
+            
+
+
+        }
+        .signature{
+            font-weight: 300;
+            font-size: 13px;
+        }
+        .navbar-nav .nav-link {
+            color: #000; 
+            transition: color 0.3s; 
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #b29b2a; 
+        }
+
+        .navbar-nav .separator {
+            border-right: 1px solid rgb(8, 8, 8); 
+            height: 2rem; 
+            margin: 0 10px; 
+        }
+        .navbar-logo {
+            height: 120px; 
+            width: auto;
+            
+        }
+
+        .golden-h1 {
+            color: #b29b2a ;
+        }
+        
+        .btn-custom-gold {
+            background-color: #b29b2a;
+            border-color:#b29b2a;
+            color: white; 
+        }
+        .img-40{
+            width:40%;
+        }
+        .cursor-pointer{
+            cursor: pointer;
+        }
+        .container-xl{
+            min-height: calc(100vh - 112px);
+        }
+        .avatar{
+            max-width: 30px;
+            max-height: 30px;
+            border-radius: 50%;
+        }
+        .menu-link {
+            color: initial; 
+            transition: color 0.3s; 
+        }
+        .menu-link:hover {
+            color:#b29b2a ; 
+        }
+        .bold-text {
+            font-weight: bold;
+        }
+
+
+
+
+        
+
+     
+
+
+
+
+
+        
+    
+
+    }
+    

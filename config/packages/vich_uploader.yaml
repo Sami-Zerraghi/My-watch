@@ -1,0 +1,32 @@
+vich_uploader:
+    db_driver: orm
+
+    metadata:
+        type: attribute
+
+
+    mappings:
+        home:
+            uri_prefix: /images/home
+            upload_destination: '%kernel.project_dir%/public/images/home'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        montre:
+            uri_prefix: /images/montre
+            upload_destination: '%kernel.project_dir%/public/images/montre'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        carousel:
+            uri_prefix: /images/carousel
+            upload_destination: '%kernel.project_dir%/public/images/carousel'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        boutique:
+            uri_prefix: /images/boutique
+            upload_destination: '%kernel.project_dir%/public/images/boutique'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        avatar:
+            uri_prefix: /images/avatar
+            upload_destination: '%kernel.project_dir%/public/images/avatar'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer    

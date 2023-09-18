@@ -1,0 +1,6 @@
+<ul class="dropdown-menu">
+<li><a class="dropdown-item menu-link" href="{{path('app_front_boutique', {slug: 'toutes-les-montres'})}}">Toutes les montres</a></li>
+    {% for boutique in boutiques %}
+<li><a class="dropdown-item menu-link" href="{{path('app_front_boutique', {slug: boutique.slug})}}">{{boutique.nom}}</a></li>
+    {% endfor %}    
+</ul>

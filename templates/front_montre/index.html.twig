@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{montre.nom}}{% endblock %}
+
+{% block body %}
+<h1>{{montre.nom}}</h1>
+<div class="row">
+    <div class="col-12 col-md-3">
+        {# On vérifie si la montre a des images #}
+        {% if montre.images|length > 0 %}
+            {# On affiche la première image #}
+            <a href="{{asset('images/montre/'~ montre.images[0].imageName)}}" data-lightbox="{{montre.nom}}">
+                <img src="{{asset('images/montre/'~ montre.images[0].imageName)}}" alt="{{montre.nom}}" class="img-fluid" id="img-big">
+            </a>
+            {# On vérifie s'il y a plus d'une image dans la collection #}
+            {% if montre.images|length > 1 %}
+                <div class="row justify-content-between">
+                    {% for image in montre.images %}
+                        {% if loop.index0 > 0 %}
+                            <div class="img-40 mt-3 cursor-pointer">
+                                <img src="{{asset('images/montre/'~ montre.images[loop.index0].imageName)}}" alt="" class="img-fluid">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="col-12 col-md-9">
+        <div class=" mt-3 fw-normal lh-lg">{{ montre.description|raw }}</div>
+    <div class="mt-5 bold-text">Prix :{{ montre.prix|format_currency('EUR') }}</div>
+
+        
+        <div class="mt-5">    
+            <a href="{{path('app_front_panier_add', {id: montre.id})}}" class=" btn btn-custom-gold"><i class="fa-solid fa-cart-shopping"></i></a> 
+        </div>       
+    </div>
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+<script>
+    // On récupére les objets de classe cursor-pointer//
+    $('.cursor-pointer').on('click', function(e){
+        e.stopPropagation();
+    // On récupére la valeur de l'attribut src de l'image cliquée//    
+        let itemSource = $(this).find('img').attr('src');
+    // On récupére la valeur de l'attribut src de la grande image //
+        let currentSource = $('#img-big').attr('src');
+    // On remplace l'attribut src de la grande image par celui de celle cliquée et on remplace également l'attribut href de la balise a//
+        $('#img-big').attr('src', itemSource);
+        $('#img-big').parent().attr("href", itemSource);
+    // On change le src de l'image cliquée //
+        $(this).find('img').attr('src', currentSource);
+    });
+    </script>
+
+{% endblock %}

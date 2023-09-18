@@ -1,0 +1,49 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Boutique/Catégorie{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_admin_boutique_index') }}"  class= "btn btn-dark btn-sm mb2">Retour à la liste</a>
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Boutique/Catégorie</h1>
+    {{ include('admin_boutique/_delete_form.html.twig') }}    
+</div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ boutique.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ boutique.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ boutique.description }}</td>
+            </tr>
+            <tr>
+                <th>Active</th>
+                <td>{{ boutique.isActive ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ boutique.slug }}</td>
+            </tr>
+            <tr>
+                <th>ImageName</th>
+                <td>{{ boutique.imageName }}</td>
+            </tr>
+            <tr>
+                <th>Mise à jour </th>
+                <td>{{ boutique.updatedAt ? boutique.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+
+    <a href="{{ path('app_admin_boutique_edit', {'id': boutique.id}) }}" class = "btn btn-success">Modifier</a>
+
+    
+{% endblock %}

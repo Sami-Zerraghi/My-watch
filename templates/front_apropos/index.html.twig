@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À propos{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mb-3">À propos</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <p>
+                    MY WATCH est votre source ultime pour les montres pour hommes de haute qualité. Nous sommes passionnés par les montres et nous nous engageons à vous offrir une sélection exceptionnelle des meilleures montres du marché.
+                </p>
+
+                <h4>Notre histoire</h4>
+                <p class="fs-6">
+                    Fondée en 2023, MY WATCH est devenue rapidement l'un des choix numéro un des amateurs de montres à travers le pays. Notre équipe dévouée recherche constamment les dernières tendances et les meilleures marques pour vous apporter des montres qui allient style, qualité et fonctionnalité.
+                </p>
+
+                <h4>Nos valeurs</h4>
+                <ul>
+                    <li>Qualité : Nous croyons en la qualité supérieure de nos produits.</li>
+                    <li>Style : Nous recherchons constamment les montres les plus élégantes.</li>
+                    <li>Service client : Votre satisfaction est notre priorité.</li>
+                </ul>
+
+                <h4>Notre équipe</h4>
+                <p>
+                    Notre équipe est composée d'experts passionnés par les montres, prêts à répondre à toutes vos questions et à vous aider à trouver la montre parfaite pour vous.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <!-- Ajoutez votre image ici -->
+                <img src="{{asset('/images/apropos/apropos.png')}}" alt="apropos" class="img-fluid">
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,70 @@
+
+<nav class="navbar navbar-expand-lg navbar-fixed bg-white border border-dark" style="min-height: 80px;">
+  <div class="container-fluid d-flex align-items-center">
+  
+    <a class="navbar-brand" href="{{path('app_home2')}}">
+  <img src="{{asset('/images/logo/logo.png')}}" alt="Logo"  class="navbar-logo pb-3">
+</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> 
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <ul class="navbar-nav w-100 justify-content-between"> <!-- Utilisation de 'w-100' et 'justify-content-between' -->
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{path('app_home2')}}">ACCEUIL</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            BOUTIQUE
+          </a>
+        {{render(controller('App\\Controller\\FrontBoutiqueController::renderBoutiqueDropDown')) }}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{{path('app_front_apropos')}}">À PROPOS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{{path('app_front_faq')}}">FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="{{path('app_front_contact')}}">CONTACT</a>
+        </li>
+      </ul>
+    
+      <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+    <li class="nav-item d-none d-lg-block separator"></li>
+    <a class="nav-link" href="{{path('app_front_panier')}}"><i class="fas fa-shopping-cart" style="color: #b29b2a;"></i></a>
+  </li>
+        <li class="nav-item d-flex align-items-center">
+          {% if app.user is null %}
+          <a class="nav-link" href="{{path('app_register')}}"><i class="fa-solid fa-pencil fa-lg" style="color: #b29b2a;"></i></a>
+          {% else %}
+          
+            <span class="text-dark me-2">{{app.user.email}}</span>
+            {% if  app.user.avatar is not null and app.user.avatar.imageName is not null %}
+            <img src="{{ asset('images/avatar/' ~ app.user.avatar.imageName) }}" alt="avatar" class="avatar" >
+            {% endif %}
+          <a class="nav-link" href="{{path('app_front_user')}}">Mon compte</a>
+          {% endif %}
+        </li>
+        {% if is_granted("ROLE_ADMIN") %}
+        <li class="nav-item">
+        <a href="{{path('app_admin')}}" class="nav-link">Admin</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          {% if is_granted("ROLE_USER") %}
+          <a class="nav-link" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket" style="color: #b29b2a;"></i></a>
+          {% else %}
+          <a class="nav-link" href="{{ path('app_login') }}"><i class="fa-regular fa-user fa-lg" style="color: #b29b2a;"></i></a>
+          {% endif %}
+        </li>
+    
+
+      </ul>
+    
+    </div>
+  </div>
+</nav>

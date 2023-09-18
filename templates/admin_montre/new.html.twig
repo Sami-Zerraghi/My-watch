@@ -1,0 +1,17 @@
+{% extends 'base-backend.html.twig' %}
+
+{% block title %}Nouvelle Montre{% endblock %}
+
+{% block body %}
+<a href="{{ path('app_admin_montre_index') }}" class = "btn btn-dark btn-sm mb2">Retour à la liste</a>
+    <h1>Nouvelle Montre</h1>
+
+    {{ include('admin_montre/_form.html.twig') }}
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{asset('js/image-upload.js')}}"></script>
+<script src="{{asset('js/add-item-link.js')}}"></script>
+{% endblock %}
